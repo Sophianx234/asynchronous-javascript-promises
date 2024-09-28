@@ -38,4 +38,16 @@ readFilePro(`${__dirname}/dog.txt`)
 
   async function getDogPic(){
    const data = await  readFilePro(`${__dirname}/dog.txt`)
+   console.log(`Breed: ${data}`)
+   const res = await superagent.get(`https://dog.ceo/api/breed/${data}/images/random`)
+   console.log(res.body)
+
+   await writeFilePro('dog-image.txt',res.body.message)
+   console.log('written to file')
   }
+  getDogPic().then(x=>{
+
+      console.log(x)
+      console.log('Damian X')
+    }
+  )
